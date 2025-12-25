@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎄 Christmas Sing-Along 🎶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --red: #b11226;
+      --green: #0b6b3a;
+      --gold: #f4d35e;
+      --snow: #f9fafb;
+      --dark: #1f2937;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.35), transparent 60%),
+        linear-gradient(135deg, #0b6b3a, #0f5132);
+      color: var(--snow);
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(8px);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+      border: 2px solid rgba(255,255,255,0.15);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+
+    header p {
+      margin-top: 8px;
+      font-size: 1.05rem;
+      opacity: 0.95;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      margin: 18px 0 16px;
+    }
+
+    select {
+      width: 100%;
+      max-width: 420px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: var(--snow);
+      color: var(--dark);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+      cursor: pointer;
+    }
+
+    .viewer-wrapper {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      min-height: 420px;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,0.05),
+                  0 12px 30px rgba(0,0,0,0.4);
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .fallback {
+      text-align: center;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+
+    .fallback a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    footer span {
+      color: var(--gold);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>🎄 Christmas Sing-Along 🎶</h1>
+      <p>Pick a song, grab a guitar (or just sing), and let the Christmas spirit roll.</p>
+    </header>
+
+    <div class="controls">
+      <select id="songSelect">
+        <option value="https://tabs.ultimate-guitar.com/tab/misc-christmas/rudolph-the-red-nosed-reindeer-chords-899577">
+          Rudolph the Red-Nosed Reindeer
+        </option>
+        <option value="https://tabs.ultimate-guitar.com/tab/misc-christmas/feliz-navidad-chords-442344">
+          Feliz Navidad
+        </option>
+        <option value="https://tabs.ultimate-guitar.com/tab/misc-christmas/jingle-bells-chords-273336">
+          Jingle Bells
+        </option>
+        <option value="https://tabs.ultimate-guitar.com/tab/misc-christmas/go-tell-it-on-the-mountain-chords-40236">
+          Go Tell It on the Mountain
+        </option>
+        <option value="https://tabs.ultimate-guitar.com/tab/misc-christmas/santa-claus-is-coming-to-town-chords-448824">
+          Santa Claus Is Coming to Town
+        </option>
+        <option value="https://tabs.ultimate-guitar.com/tab/misc-christmas/silent-night-chords-1014792">
+          Silent Night
+        </option>
+      </select>
+    </div>
+
+    <div class="viewer-wrapper">
+      <iframe
+        id="songViewer"
+        src="https://tabs.ultimate-guitar.com/tab/misc-christmas/rudolph-the-red-nosed-reindeer-chords-899577"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <div class="fallback">
+      If the song doesn’t load,  
+      <a id="openLink" href="https://tabs.ultimate-guitar.com/tab/misc-christmas/rudolph-the-red-nosed-reindeer-chords-899577" target="_blank">
+        open it in a new tab
+      </a>.
+    </div>
+
+    <footer>
+      Made for cozy nights, loud kids, and off-key choruses 🎅  
+      <br />
+      <span>🎄 Merry Christmas 🎄</span>
+    </footer>
+  </div>
+
+  <script>
+    const select = document.getElementById("songSelect");
+    const iframe = document.getElementById("songViewer");
+    const openLink = document.getElementById("openLink");
+
+    select.addEventListener("change", () => {
+      const url = select.value;
+      iframe.src = url;
+      openLink.href = url;
+    });
+  </script>
+</body>
+</html>
